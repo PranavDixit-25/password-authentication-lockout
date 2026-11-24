@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SecureAuth | Password Authentication & Lockout</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="shell">
+  <section class="hero">
+    <span class="badge">Cryptography & Network Security · PBL</span>
+    <h1>Secure Password Authentication<br><span>& Account Lockout System</span></h1>
+    <p>A browser-based demonstration of salted password hashing, authentication, failed-login tracking, and account lockout after three incorrect attempts.</p>
+    <div class="features"><span>✓ Salted SHA-256</span><span>✓ No plaintext password storage</span><span>✓ 3-attempt lockout</span></div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="tabs"><button class="tab active" data-tab="register">Register</button><button class="tab" data-tab="login">Login</button></div>
+      <div id="register" class="panel active">
+        <h2>Create demo account</h2><p class="muted">The password is salted and hashed before being stored locally.</p>
+        <label>Username<input id="regUser" autocomplete="username" placeholder="e.g. pranav"></label>
+        <label>Password<input id="regPass" type="password" autocomplete="new-password" placeholder="Minimum 6 characters"></label>
+        <button class="primary" id="registerBtn">Register securely</button>
+      </div>
+      <div id="login" class="panel">
+        <h2>Authenticate</h2><p class="muted">Three consecutive incorrect passwords lock the account.</p>
+        <label>Username<input id="loginUser" autocomplete="username" placeholder="Your username"></label>
+        <label>Password<input id="loginPass" type="password" autocomplete="current-password" placeholder="Your password"></label>
+        <button class="primary" id="loginBtn">Sign in</button>
+        <button class="secondary" id="resetBtn">Reset demo lockout</button>
+      </div>
+      <div id="message" class="message" aria-live="polite"></div>
+    </div>
+
+    <aside class="card inspector">
+      <div class="inspector-head"><div><p class="eyebrow">SECURITY INSPECTOR</p><h2>Stored account data</h2></div><span id="status" class="status neutral">No account</span></div>
+      <p class="muted">Use this panel during your demo to prove that the plaintext password is never stored.</p>
+      <div class="data-row"><span>Username</span><code id="storedUser">—</code></div>
+      <div class="data-row"><span>Salt</span><code id="storedSalt">—</code></div>
+      <div class="data-row"><span>Password hash</span><code id="storedHash">—</code></div>
+      <div class="data-row"><span>Failed attempts</span><code id="attempts">0 / 3</code></div>
+      <div class="flow"><b>Authentication flow</b><p>Password + Salt → SHA-256 → Compare Hash → Allow / Deny → Lock after 3 failures</p></div>
+    </aside>
+  </section>
+
+  <section class="learn card"><h2>What this project demonstrates</h2><div class="learn-grid"><article><b>Authentication</b><p>Verifies whether the supplied credentials belong to the registered user.</p></article><article><b>Salted hashing</b><p>A random salt is combined with the password before SHA-256 hashing.</p></article><article><b>Account lockout</b><p>Repeated failed logins are restricted after three incorrect attempts.</p></article></div></section>
+</main>
+<footer>Educational PBL demo · Data is stored only in this browser using localStorage.</footer>
+<script src="app.js"></script>
+</body></html>
